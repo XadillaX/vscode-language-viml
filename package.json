@@ -1,7 +1,7 @@
 {
   "name": "viml",
   "displayName": "VimL (Vim Language, Vim Script)",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vim Script language support for VSCode.",
   "scripts": {
     "update-grammar": "update-grammar Alhadis/language-viml grammars/viml.cson syntaxes/viml.tmLanguage.json"
@@ -49,7 +49,8 @@
         ".vimrc",
         ".gvim",
         ".ideavim"
-      ]
+      ],
+      "configuration": "./language-configuration.json"
     }]
   }
 }
