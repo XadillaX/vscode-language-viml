@@ -1,0 +1,55 @@
+{
+  "name": "viml",
+  "displayName": "VimL (Vim Language, Vim Script)",
+  "version": "0.0.1",
+  "description": "Vim Script language support for VSCode.",
+  "scripts": {
+    "update-grammar": "update-grammar Alhadis/language-viml grammars/viml.cson syntaxes/viml.tmLanguage.json"
+  },
+  "engines": {
+    "vscode": "^1.20.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "publisher": "XadillaX",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XadillaX/vscode-language-viml.git"
+  },
+  "author": "XadillaX <i@2333.moe>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XadillaX/vscode-language-viml/issues"
+  },
+  "homepage": "https://github.com/XadillaX/vscode-language-viml#readme",
+  "galleryBanner": {
+    "color": "#569cd6",
+    "theme": "dark"
+  },
+  "icon": "assets/logo.png",
+  "devDependencies": {
+    "vscode-update-grammar-tool": "^1.0.0"
+  },
+  "contributes": {
+    "grammars": [{
+      "language": "viml",
+      "scopeName": "source.viml",
+      "path": "./syntaxes/viml.tmLanguage.json"
+    }],
+    "languages": [{
+      "id": "viml",
+      "aliases": [
+        "VimL",
+        "VimScript",
+        "Vim Language"
+      ],
+      "extensions": [
+        ".vim",
+        ".vimrc",
+        ".gvim",
+        ".ideavim"
+      ]
+    }]
+  }
+}
