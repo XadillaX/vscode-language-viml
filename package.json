@@ -48,7 +48,8 @@
         ".vim",
         ".vimrc",
         ".gvim",
-        ".ideavim"
+        ".ideavim",
+        ".exrc"
       ],
       "configuration": "./language-configuration.json"
     }]
