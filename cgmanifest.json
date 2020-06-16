@@ -6,12 +6,12 @@
         "git": {
           "name": "Alhadis/language-viml",
           "repositoryUrl": "https://github.com/Alhadis/language-viml",
-          "commitHash": "c5950dd59dfb11dc34df2f4077a410821ad71c5b"
+          "commitHash": "27c79b40583bb62f2aef74054e103d5fae702e0f"
         },
         "license": "MIT",
         "description": "Vim Script language support for Atom"
       },
-      "version": "1.1.10"
+      "version": "1.2.0"
     }
   ]
 }
