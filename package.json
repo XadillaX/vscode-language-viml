@@ -50,6 +50,9 @@
         ".gvim",
         ".ideavim"
       ],
+      "filenames": [
+        "vimrc"
+      ],
       "configuration": "./language-configuration.json"
     }]
   }
