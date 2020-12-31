@@ -52,7 +52,9 @@
         ".exrc"
       ],
       "filenames": [
-        "vimrc"
+        "vimrc",
+        ".ideavim",
+        ".ideavimrc"
       ],
       "configuration": "./language-configuration.json"
     }]

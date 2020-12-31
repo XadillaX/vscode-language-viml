@@ -15,7 +15,7 @@ Vim Script language support for VSCode.
     - `*.vim`
     - `*.vimrc`
     - `*.gvimrc`
-    - `*.ideavim`
+    - `*.ideavim` / `.ideavim` / `.ideavimrc`
     - `*.exrc`
 
 ## TODO
