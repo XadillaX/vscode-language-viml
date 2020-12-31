@@ -15,7 +15,7 @@
   "publisher": "XadillaX",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/XadillaX/vscode-language-viml.git"
+    "url": "https://github.com/XadillaX/vscode-language-viml.git"
   },
   "author": "XadillaX <i@2333.moe>",
   "license": "MIT",
