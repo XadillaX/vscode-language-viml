@@ -2,7 +2,7 @@
   "name": "viml",
   "displayName": "VimL (Vim Language, Vim Script)",
   "version": "2.0.0",
-  "description": "Vim Script language support for VSCode.",
+  "description": "Vim Script language server protocol and highlighting support for VSCode.",
   "scripts": {
     "update-grammar": "make update-grammar",
     "update-changelog": "auto-changelog -p",
@@ -67,6 +67,17 @@
         "language": "vim-snippet",
         "scopeName": "source.vim-snippet",
         "path": "./syntaxes/snippet.tmLanguage.json"
+      },
+      {
+        "language": "viml-markdown",
+        "scopeName": "markdown.viml.codeblock",
+        "path": "./syntaxes/codeblock.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.viml": "viml"
+        }
       }
     ],
     "languages": [
@@ -106,6 +117,9 @@
           ".snippets"
         ],
         "configuration": "./syntaxes/snippet.language-configuration.json"
+      },
+      {
+        "id": "viml-markdown"
       }
     ]
   },

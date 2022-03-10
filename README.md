@@ -11,6 +11,7 @@ Vim Script language support for VSCode.
 ## Features
 
 + Syntax highlighting for VimL files;
++ Syntax highlighting for VimL in Markdown;
 + Syntax highlighting for Vim Help files and Vim Snippet files;
 + By default, the following file types will be highlighted:
     - `*.vim`
