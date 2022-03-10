@@ -1,0 +1,651 @@
+{
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/Alhadis/language-viml/blob/master/grammars/snippet.cson",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
+  "version": "https://github.com/Alhadis/language-viml/commit/a8e1770846b4d994ab2be04371f7d97a16b1a08f",
+  "name": "Vim Snippet",
+  "scopeName": "source.vim-snippet",
+  "patterns": [
+    {
+      "include": "#main"
+    }
+  ],
+  "repository": {
+    "main": {
+      "patterns": [
+        {
+          "include": "#snippet"
+        },
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#extends"
+        },
+        {
+          "include": "#global"
+        },
+        {
+          "include": "#priority"
+        },
+        {
+          "include": "#expression"
+        },
+        {
+          "include": "#version"
+        },
+        {
+          "include": "#ultisnips"
+        },
+        {
+          "include": "#neosnippet"
+        }
+      ]
+    },
+    "comment": {
+      "name": "comment.line.number-sign.vim-snippet",
+      "begin": "^#",
+      "end": "$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.number-sign.vim-snippet"
+        }
+      }
+    },
+    "extends": {
+      "name": "meta.$1.directive.vim-snippet",
+      "begin": "^(extends|include|source)(?=\\s|$)",
+      "end": "$",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.$1.directive.vim-snippet"
+        }
+      },
+      "patterns": [
+        {
+          "match": ",",
+          "name": "punctuation.separator.delimiter.comma.vim-snippet"
+        },
+        {
+          "match": "[^,\\s]+",
+          "name": "entity.other.inherited-class.vim-snippet"
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        {
+          "name": "string.interpolated.python-code.vim-snippet",
+          "begin": "(`)(!p)",
+          "end": "`",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.section.begin.embedded.vim-snippet"
+            },
+            "2": {
+              "name": "keyword.operator.use-python.vim-snippet"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.end.embedded.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "name": "source.embedded.python",
+              "match": "(?:[^\\\\`]|\\\\.)+",
+              "captures": {
+                "0": {
+                  "patterns": [
+                    {
+                      "include": "source.python"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "string.interpolated.viml-code.vim-snippet",
+          "begin": "(`)(!v)",
+          "end": "`",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.section.begin.embedded.vim-snippet"
+            },
+            "2": {
+              "name": "keyword.operator.use-viml.vim-snippet"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.end.embedded.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "name": "source.embedded.viml",
+              "match": "(?:[^\\\\`]|\\\\.)+",
+              "captures": {
+                "0": {
+                  "patterns": [
+                    {
+                      "include": "source.viml"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "string.interpolated.vim-snippet",
+          "begin": "`",
+          "end": "`",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.begin.embedded.vim-snippet"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.end.embedded.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "name": "source.embedded.viml",
+              "match": "(?:[^\\\\`]|\\\\.)+",
+              "captures": {
+                "0": {
+                  "patterns": [
+                    {
+                      "include": "source.viml"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "global": {
+      "name": "meta.ultisnip.global.vim-snippet",
+      "begin": "^(global)\\s+(!p)[ \\t]*$",
+      "end": "^(endglobal)(?=\\s|$)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.global.begin.vim-snippet"
+        },
+        "2": {
+          "name": "keyword.operator.use-python.vim-snippet"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control.global.end.vim-snippet"
+        }
+      },
+      "contentName": "source.embedded.python",
+      "patterns": [
+        {
+          "include": "source.python"
+        }
+      ]
+    },
+    "neosnippet": {
+      "patterns": [
+        {
+          "name": "meta.neosnippet-field.vim-snippet",
+          "match": "(?:\\G|^)(abbr|alias|delete|options)\\s+(\\S.*)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.$1.vim-snippet"
+            },
+            "2": {
+              "name": "entity.other.neosnippet-keyword.vim-snippet"
+            }
+          }
+        },
+        {
+          "name": "meta.neosnippet-field.vim-snippet",
+          "match": "(?x) (?:\\G|^)\n(regexp) \\s+\n( (')([^']*)(') # Single-quoted\n| (\")([^\"]*)(\") # Double-quoted\n| ([^'\"\\s]\\.) # Unquoted (?)\n)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.regex.vim-snippet"
+            },
+            "2": {
+              "name": "string.regexp.quoted.single.vim-snippet"
+            },
+            "3": {
+              "name": "punctuation.definition.string.regexp.begin.vim-snippet"
+            },
+            "4": {
+              "patterns": [
+                {
+                  "include": "source.regexp"
+                }
+              ]
+            },
+            "5": {
+              "name": "punctuation.definition.string.regexp.end.vim-snippet"
+            },
+            "6": {
+              "name": "punctuation.definition.string.regexp.begin.vim-snippet"
+            },
+            "7": {
+              "patterns": [
+                {
+                  "include": "source.regexp"
+                }
+              ]
+            },
+            "8": {
+              "name": "punctuation.definition.string.regexp.end.vim-snippet"
+            },
+            "9": {
+              "patterns": [
+                {
+                  "include": "source.regexp"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "snippet": {
+      "name": "meta.snippet.vim-snippet",
+      "begin": "^(snippet)(!{0,2})(?=[ \\t]|$)",
+      "end": "^(endsnippet)\\s*$|(?=^\\S)|(?<=endsnippet)(?=\\s|$)",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.class.vim-snippet"
+        },
+        "2": {
+          "name": "keyword.operator.scope.modifier.vim-snippet"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "storage.type.class.end.vim-snippet"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#snippetHead"
+        },
+        {
+          "include": "#snippetNeck"
+        },
+        {
+          "include": "#snippetBody"
+        }
+      ]
+    },
+    "snippetHead": {
+      "begin": "\\G",
+      "end": "(?=^)|(?=\\s*$)",
+      "patterns": [
+        {
+          "begin": "\\G\\s*((\\S+))",
+          "end": "(?=^|\\S)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.trigger.vim-snippet"
+            },
+            "2": {
+              "name": "markup.heading.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#snippetNeck"
+            }
+          ]
+        },
+        {
+          "begin": "(?<=\\s)(\")[^\"]*(\")",
+          "end": "(?=^|\\S)",
+          "beginCaptures": {
+            "0": {
+              "name": "string.quoted.double.description.vim-snippet"
+            },
+            "1": {
+              "name": "punctuation.definition.string.begin.vim-snippet"
+            },
+            "2": {
+              "name": "punctuation.definition.string.end.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#snippetNeck"
+            }
+          ]
+        },
+        {
+          "begin": "(?<=\\s)[Abeimrstw]+(?=\\s*$)",
+          "end": "(?=^|\\S)",
+          "beginCaptures": {
+            "0": {
+              "name": "constant.language.other.options.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#snippetNeck"
+            }
+          ]
+        },
+        {
+          "begin": "(?<=\\s)\\S+",
+          "end": "(?=^|\\S)",
+          "beginCaptures": {
+            "0": {
+              "name": "entity.other.description.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#snippetNeck"
+            }
+          ]
+        },
+        {
+          "include": "#snippetNeck"
+        }
+      ]
+    },
+    "snippetNeck": {
+      "begin": "\\G\\s*$\\s*",
+      "end": "^(endsnippet)\\s*$|(?=^\\s)|(?<=endsnippet)(?=\\s|$)",
+      "endCaptures": {
+        "1": {
+          "name": "storage.type.class.end.vim-snippet"
+        }
+      },
+      "contentName": "meta.snippet-body.vim-snippet",
+      "patterns": [
+        {
+          "begin": "(?<=^)(?=\\S)(?!endsnippet|(?:abbr|alias|regexp|options)\\s+\\S)",
+          "end": "^(endsnippet)(?=$|[ \\t])",
+          "endCaptures": {
+            "1": {
+              "name": "storage.type.class.end.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#snippetBody"
+            }
+          ]
+        },
+        {
+          "begin": "(?<=^)(?=(?:abbr|alias|regexp|options)\\s+\\S)",
+          "end": "(?=^\\s)",
+          "patterns": [
+            {
+              "include": "#neosnippet"
+            }
+          ]
+        }
+      ]
+    },
+    "snippetBody": {
+      "patterns": [
+        {
+          "include": "#escape"
+        },
+        {
+          "include": "#expression"
+        },
+        {
+          "include": "#tabStop"
+        }
+      ]
+    },
+    "escape": {
+      "name": "constant.character.escape.dollar-sign.vim-snippet",
+      "match": "(\\\\).",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.escape.vim-snippet"
+        }
+      }
+    },
+    "priority": {
+      "begin": "^priority(?=\\s|$)",
+      "end": "$",
+      "beginCaptures": {
+        "0": {
+          "name": "keyword.control.version.directive.vim-snippet"
+        }
+      },
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.int.vim-snippet",
+          "match": "[-+]?[\\d.]+"
+        }
+      ]
+    },
+    "tabStop": {
+      "patterns": [
+        {
+          "name": "variable.language.tab-stop.$2-nth.vim-snippet",
+          "match": "(\\$)([0-9]+)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.vim-snippet"
+            }
+          }
+        },
+        {
+          "name": "variable.language.tab-stop.$2-nth.vim-snippet",
+          "match": "(\\${)([0-9]+)(})",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.begin.vim-snippet"
+            },
+            "3": {
+              "name": "punctuation.definition.variable.end.vim-snippet"
+            }
+          }
+        },
+        {
+          "name": "variable.language.tab-stop.$2-nth.placeholder.vim-snippet",
+          "begin": "(\\${)([0-9]+)(:)",
+          "end": "}",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.variable.begin.vim-snippet"
+            },
+            "3": {
+              "name": "keyword.operator.assignment.key-value.vim-snippet"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.variable.end.vim-snippet"
+            }
+          },
+          "contentName": "markup.inserted.placeholder.vim-snippet",
+          "patterns": [
+            {
+              "include": "#visual"
+            },
+            {
+              "include": "#escape"
+            },
+            {
+              "include": "#tabStop"
+            }
+          ]
+        },
+        {
+          "name": "meta.transform.tab-stop.$2-nth.vim-snippet",
+          "begin": "(\\${)([0-9]+)(?=/)",
+          "end": "}",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.variable.begin.vim-snippet"
+            },
+            "2": {
+              "name": "variable.language.tab-stop.vim-snippet"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.variable.end.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.regexp.transform.vim-snippet",
+              "begin": "\\G/",
+              "end": "/",
+              "beginCaptures": {
+                "0": {
+                  "name": "keyword.control.transform.begin.vim-snippet"
+                }
+              },
+              "endCaptures": {
+                "0": {
+                  "name": "keyword.control.transform.middle.vim-snippet"
+                }
+              },
+              "contentName": "markup.deleted.transform.vim-snippet",
+              "patterns": [
+                {
+                  "include": "source.regexp"
+                }
+              ]
+            },
+            {
+              "contentName": "markup.inserted.transform.vim-snippet",
+              "begin": "(?<=/)",
+              "end": "(/)([gima]*)",
+              "endCaptures": {
+                "1": {
+                  "name": "keyword.control.transform.end.vim-snippet"
+                },
+                "2": {
+                  "name": "storage.modifier.transform.option.vim-snippet"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "source.regexp"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ultisnips": {
+      "patterns": [
+        {
+          "name": "meta.clear.directive.vim-snippet",
+          "begin": "^(clearsnippets)(?=\\s|$)",
+          "end": "$",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.clearsnippets.directive.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "name": "variable.parameter.function.vim-snippet",
+              "match": "[^\\s]+"
+            }
+          ]
+        },
+        {
+          "name": "meta.$1.directive.vim-snippet",
+          "begin": "^(context|pre_expand|post_expand|post_jump)(?=[ \\t]|$)",
+          "end": "$",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.$1.directive.vim-snippet"
+            }
+          },
+          "patterns": [
+            {
+              "name": "string.quoted.double.python-code.vim-snippet",
+              "match": "(\")([^\"]*)(\")",
+              "captures": {
+                "1": {
+                  "name": "punctuation.definition.string.begin.vim-snippet"
+                },
+                "2": {
+                  "patterns": [
+                    {
+                      "include": "source.python"
+                    }
+                  ]
+                },
+                "3": {
+                  "name": "punctuation.definition.string.end.vim-snippet"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "version": {
+      "match": "^(version)\\s+(\\d)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.version.directive.vim-snippet"
+        },
+        "2": {
+          "name": "constant.numeric.integer.int.vim-snippet"
+        }
+      }
+    },
+    "visual": {
+      "patterns": [
+        {
+          "name": "constant.language.visual-content.unbraced.vim-snippet",
+          "match": "(\\$)VISUAL",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.vim-snippet"
+            }
+          }
+        },
+        {
+          "name": "constant.language.visual-content.braced.vim-snippet",
+          "match": "(\\${)VISUAL(})",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.begin.vim-snippet"
+            },
+            "2": {
+              "name": "punctuation.definition.end.vim-snippet"
+            }
+          }
+        },
+        {
+          "name": "constant.language.visual-content.v0-syntax.vim-snippet",
+          "match": "({)VISUAL(})",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.begin.vim-snippet"
+            },
+            "2": {
+              "name": "punctuation.definition.end.vim-snippet"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

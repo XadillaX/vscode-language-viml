@@ -1,0 +1,29 @@
+{
+  "comments": {
+    "lineComment": "# ",
+  },
+  "brackets": [
+    [ "{", "}" ],
+    [ "[", "]" ],
+    [ "(", ")" ]
+  ],
+  "autoClosingPairs": [
+    [ "{", "}" ],
+    [ "[", "]" ],
+    [ "(", ")" ],
+    [ "'", "'" ],
+    [ "\"", "\"" ]
+  ],
+  "surroundingPairs": [
+    [ "{", "}" ],
+    [ "[", "]" ],
+    [ "(", ")" ],
+    [ "'", "'" ],
+    [ "\"", "\"" ]
+  ],
+  "indentationRules": {
+    "increaseIndentPattern": "^snippet.+(?<!\")",
+    "decreaseIndentPattern": "^[^ ]$",
+    "comment": "^[^ ]$ is a noop regexp"
+  }
+}

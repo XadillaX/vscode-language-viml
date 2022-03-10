@@ -1,11 +1,14 @@
 {
   "name": "viml",
   "displayName": "VimL (Vim Language, Vim Script)",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Vim Script language support for VSCode.",
   "scripts": {
-    "update-grammar": "update-grammar Alhadis/language-viml grammars/viml.cson syntaxes/viml.tmLanguage.json",
-    "update-changelog": "auto-changelog -p"
+    "update-grammar": "make update-grammar",
+    "update-changelog": "auto-changelog -p",
+    "postinstall": "rm -f package-lock.json",
+    "compile": "tsc -p ./",
+    "vscode:prepublish": "make pack"
   },
   "engines": {
     "vscode": "^1.20.0"
@@ -30,15 +33,40 @@
   },
   "icon": "assets/logo.png",
   "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/vscode": "^1.20.0",
     "auto-changelog": "^2.4.0",
+    "eslint": "^8.0.0",
+    "eslint-config-egg": "^11.0.0",
+    "typescript": "^4.6.2",
     "vscode-update-grammar-tool": "^1.0.0"
   },
   "contributes": {
+    "configuration": {
+      "title": "VimL",
+      "properties": {
+        "viml.highVimHelpIndentStylePriority": {
+          "type": "boolean",
+          "default": true,
+          "description": "Force use 8-spaces-size and tab as Vim Help file's indentation style (Even higher priority than EditorConfig, etc.)"
+        }
+      }
+    },
     "grammars": [
       {
         "language": "viml",
         "scopeName": "source.viml",
         "path": "./syntaxes/viml.tmLanguage.json"
+      },
+      {
+        "language": "vim-help",
+        "scopeName": "text.vim-help",
+        "path": "./syntaxes/help.tmLanguage.json"
+      },
+      {
+        "language": "vim-snippet",
+        "scopeName": "source.vim-snippet",
+        "path": "./syntaxes/snippet.tmLanguage.json"
       }
     ],
     "languages": [
@@ -62,8 +90,31 @@
           ".ideavim",
           ".ideavimrc"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./syntaxes/viml.language-configuration.json"
+      },
+      {
+        "id": "vim-help",
+        "aliases": [ "Vim Help" ],
+        "configuration": "./syntaxes/help.language-configuration.json"
+      },
+      {
+        "id": "vim-snippet",
+        "aliases": [ "Vim Snippet" ],
+        "extensions": [
+          ".snip",
+          ".snippet",
+          ".snippets"
+        ],
+        "configuration": "./syntaxes/snippet.language-configuration.json"
       }
     ]
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "dependencies": {
+    "vim-language-server": "^2.2.6",
+    "vscode-languageclient": "^7.0.0"
   }
 }

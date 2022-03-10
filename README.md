@@ -10,18 +10,26 @@ Vim Script language support for VSCode.
 
 ## Features
 
-+ Syntax highlighting for VimL files.
++ Syntax highlighting for VimL files;
++ Syntax highlighting for Vim Help files and Vim Snippet files;
 + By default, the following file types will be highlighted:
     - `*.vim`
-    - `*.vimrc`
+    - `*.vimrc` / `_vimrc`
     - `*.gvimrc`
     - `*.ideavim` / `.ideavim` / `.ideavimrc`
     - `*.exrc`
-
-## TODO
-
-+ Code Completion
-+ Code Validation
++ Language Server Protocol (By https://github.com/iamcco/vim-language-server)
+    - Auto completion;
+    - Funciton signature help;
+    - Hover document;
+    - Go to definition;
+    - Go to references;
+    - Document symbols;
+    - Folding range;
+    - Select range;
+    - Rename;
+    - Snippets;
+    - Diagnostic.
 
 ## Contribution
 

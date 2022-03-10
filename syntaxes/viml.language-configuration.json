@@ -1,0 +1,29 @@
+{
+  "comments": {
+    "lineComment": "\" ",
+  },
+  "brackets": [
+    [ "{", "}" ],
+    [ "[", "]" ],
+    [ "(", ")" ],
+    [ "<", ">" ]
+  ],
+  "autoClosingPairs": [
+    [ "{", "}" ],
+    [ "[", "]" ],
+    [ "(", ")" ],
+    [ "'", "'" ]
+  ],
+  "surroundingPairs": [
+    [ "{", "}" ],
+    [ "[", "]" ],
+    [ "(", ")" ],
+    [ "'", "'" ],
+    [ "\"", "\"" ],
+    [ "<", ">" ]
+  ],
+  "indentationRules": {
+    "increaseIndentPattern": "(?:^|\\s)(?:if|else|elseif|for|function!?|fu|fun|func|augroup|aug|try|catch|while)(?:\\s|$)",
+    "decreaseIndentPattern": "(?:^|\\s)(?:endif|endfor|endf|endfun|endfunction|endtry|endwhile|(?:augroup|aug)\\.END)(?:\\s|$)"
+  }
+}
