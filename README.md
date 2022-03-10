@@ -20,7 +20,7 @@ Vim Script language support for VSCode.
     - `*.exrc`
 + Language Server Protocol (By https://github.com/iamcco/vim-language-server)
     - Auto completion;
-    - Funciton signature help;
+    - Function signature help;
     - Hover document;
     - Go to definition;
     - Go to references;
