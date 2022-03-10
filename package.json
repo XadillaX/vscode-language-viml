@@ -1,10 +1,11 @@
 {
   "name": "viml",
   "displayName": "VimL (Vim Language, Vim Script)",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Vim Script language support for VSCode.",
   "scripts": {
-    "update-grammar": "update-grammar Alhadis/language-viml grammars/viml.cson syntaxes/viml.tmLanguage.json"
+    "update-grammar": "update-grammar Alhadis/language-viml grammars/viml.cson syntaxes/viml.tmLanguage.json",
+    "update-changelog": "auto-changelog -p"
   },
   "engines": {
     "vscode": "^1.20.0"
@@ -29,35 +30,40 @@
   },
   "icon": "assets/logo.png",
   "devDependencies": {
+    "auto-changelog": "^2.4.0",
     "vscode-update-grammar-tool": "^1.0.0"
   },
   "contributes": {
-    "grammars": [{
-      "language": "viml",
-      "scopeName": "source.viml",
-      "path": "./syntaxes/viml.tmLanguage.json"
-    }],
-    "languages": [{
-      "id": "viml",
-      "aliases": [
-        "VimL",
-        "VimScript",
-        "Vim Language"
-      ],
-      "extensions": [
-        ".vim",
-        ".vimrc",
-        ".gvim",
-        ".ideavim",
-        ".exrc"
-      ],
-      "filenames": [
-        "_vimrc",
-        "vimrc",
-        ".ideavim",
-        ".ideavimrc"
-      ],
-      "configuration": "./language-configuration.json"
-    }]
+    "grammars": [
+      {
+        "language": "viml",
+        "scopeName": "source.viml",
+        "path": "./syntaxes/viml.tmLanguage.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "viml",
+        "aliases": [
+          "VimL",
+          "VimScript",
+          "Vim Language"
+        ],
+        "extensions": [
+          ".vim",
+          ".vimrc",
+          ".gvim",
+          ".ideavim",
+          ".exrc"
+        ],
+        "filenames": [
+          "_vimrc",
+          "vimrc",
+          ".ideavim",
+          ".ideavimrc"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ]
   }
 }
