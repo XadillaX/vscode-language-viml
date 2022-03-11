@@ -62,3 +62,4 @@ typings/
 
 *.vsix
 out
+package-lock.json

@@ -1,20 +1,20 @@
 <p align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-    <img height="200" src="https://github.com/XadillaX/vscode-language-viml/raw/master/assets/README.png" />
+  <img height="200" src="https://github.com/XadillaX/vscode-language-viml/raw/master/assets/README.png" />
 </p>
 
 <p align="center">
-    <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
-        <img src="https://vsmarketplacebadge.apphb.com/version-short/XadillaX.viml.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=VS%20MARKETPLACE" />
-    </a>
-    <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
-        <img src="https://vsmarketplacebadge.apphb.com/downloads-short/XadillaX.viml.svg?style=for-the-badge&colorA=5DDB61&colorB=4BC74F&label=DOWNLOADS" />
-    </a>
-    <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
-        <img src="https://vsmarketplacebadge.apphb.com/rating-star/XadillaX.viml.svg?style=for-the-badge&colorA=FBBD30&colorB=F2AA08" />
-    </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
+    <img src="https://vsmarketplacebadges.dev/version-short/XadillaX.viml.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=VS%20MARKETPLACE" />
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
+    <img src="https://vsmarketplacebadges.dev/downloads-short/XadillaX.viml.svg?style=for-the-badge&colorA=5DDB61&colorB=4BC74F&label=DOWNLOADS" />
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
+    <img src="https://vsmarketplacebadges.dev/rating-star/XadillaX.viml.svg?style=for-the-badge&colorA=FBBD30&colorB=F2AA08" />
+  </a>
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" /></a>
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
 ## What does this extension do?
@@ -46,10 +46,6 @@ Language Server Protocol depends on [vim-language-server](https://github.com/iam
   - **Vim Help files** (`*.txt` with matching a certain RegExp in file);
   - **Vim Snippet files** (`*.snip`, `*.snippet`, `*.snippets`, etc);
 + Syntax highlighting for embedding **Vim related syntaxes** (see above) in **Markdown files**.
-
-## Contribution
-
-Pull requests and Issues are welcomed.
 
 ## Contributors ✨
 

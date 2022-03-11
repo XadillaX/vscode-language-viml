@@ -35,6 +35,7 @@
   "devDependencies": {
     "@types/node": "^17.0.21",
     "@types/vscode": "^1.20.0",
+    "all-contributors-cli": "^6.20.0",
     "auto-changelog": "^2.4.0",
     "eslint": "^8.0.0",
     "eslint-config-egg": "^11.0.0",
@@ -107,12 +108,16 @@
       },
       {
         "id": "vim-help",
-        "aliases": [ "Vim Help" ],
+        "aliases": [
+          "Vim Help"
+        ],
         "configuration": "./syntaxes/help.language-configuration.json"
       },
       {
         "id": "vim-snippet",
-        "aliases": [ "Vim Snippet" ],
+        "aliases": [
+          "Vim Snippet"
+        ],
         "extensions": [
           ".snip",
           ".snippet",
