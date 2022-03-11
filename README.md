@@ -4,13 +4,13 @@
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
-    <img src="https://vsmarketplacebadges.dev/version-short/XadillaX.viml.svg?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=VS%20MARKETPLACE" />
+    <img src="https://vsmarketplacebadges.dev/version-short/XadillaX.viml.svg.?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=VS%20MARKETPLACE" />
   </a>
   <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
-    <img src="https://vsmarketplacebadges.dev/downloads-short/XadillaX.viml.svg?style=for-the-badge&colorA=5DDB61&colorB=4BC74F&label=DOWNLOADS" />
+    <img src="https://vsmarketplacebadges.dev/downloads-short/XadillaX.viml.svg.?style=for-the-badge&colorA=5DDB61&colorB=4BC74F&label=DOWNLOADS" />
   </a>
   <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
-    <img src="https://vsmarketplacebadges.dev/rating-star/XadillaX.viml.svg?style=for-the-badge&colorA=FBBD30&colorB=F2AA08" />
+    <img src="https://vsmarketplacebadges.dev/rating-star/XadillaX.viml.svg.?style=for-the-badge&colorA=FBBD30&colorB=F2AA08" />
   </a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" /></a>
