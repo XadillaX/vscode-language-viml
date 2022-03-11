@@ -46,4 +46,4 @@ Language Server Protocol depends on [vim-language-server](https://github.com/iam
 
 ## Contribution
 
-Pull requests are welcomed.
+Pull requests and Issues are welcomed.

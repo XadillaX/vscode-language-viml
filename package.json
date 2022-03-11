@@ -69,14 +69,16 @@
         "path": "./syntaxes/snippet.tmLanguage.json"
       },
       {
-        "language": "viml-markdown",
-        "scopeName": "markdown.viml.codeblock",
+        "language": "vim-markdown",
+        "scopeName": "markdown.vim.codeblock",
         "path": "./syntaxes/codeblock.json",
         "injectTo": [
           "text.html.markdown"
         ],
         "embeddedLanguages": {
-          "meta.embedded.block.viml": "viml"
+          "meta.embedded.block.viml": "viml",
+          "meta.embedded.block.vim-help": "vim-help",
+          "meta.embedded.block.vim-snippet": "vim-snippet"
         }
       }
     ],
@@ -119,7 +121,7 @@
         "configuration": "./syntaxes/snippet.language-configuration.json"
       },
       {
-        "id": "viml-markdown"
+        "id": "vim-markdown"
       }
     ]
   },
