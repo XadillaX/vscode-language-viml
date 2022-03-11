@@ -23,6 +23,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "dawsers",
+      "name": "dawsers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47487972?v=4",
+      "profile": "https://github.com/dawsers",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
