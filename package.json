@@ -33,14 +33,14 @@
   },
   "icon": "assets/logo.png",
   "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@types/vscode": "^1.20.0",
-    "all-contributors-cli": "^6.20.0",
-    "auto-changelog": "^2.4.0",
-    "eslint": "^8.0.0",
-    "eslint-config-egg": "^11.0.0",
-    "typescript": "^4.6.2",
-    "vscode-update-grammar-tool": "^1.0.0"
+    "@types/node": "17.0.21",
+    "@types/vscode": "1.65.0",
+    "all-contributors-cli": "6.20.0",
+    "auto-changelog": "2.4.0",
+    "eslint": "8.11.0",
+    "eslint-config-egg": "11.0.1",
+    "typescript": "4.6.2",
+    "vscode-update-grammar-tool": "1.0.0"
   },
   "contributes": {
     "configuration": {
