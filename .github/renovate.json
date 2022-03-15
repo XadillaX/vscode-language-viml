@@ -5,7 +5,8 @@
   "ignoreDeps": [
     "@types/vscode",
     "eslint",
-    "eslint-config-egg"
+    "eslint-config-egg",
+    "vscode"
   ],
   "lockFileMaintenance": {
     "enabled": false
