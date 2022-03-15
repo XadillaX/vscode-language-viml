@@ -10,5 +10,6 @@
   "lockFileMaintenance": {
     "enabled": false
   },
-  "updatePinnedDependencies": false
+  "updatePinnedDependencies": false,
+  "rangeStrategy": "bump"
 }
