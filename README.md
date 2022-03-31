@@ -21,6 +21,8 @@
 
 [**VimL**](https://en.wikipedia.org/wiki/Vim_(text_editor)#Vim_script) (Also known as **Vim Language**, **VimScript**) support for [VSCode](https://code.visualstudio.com/).
 
+[![](assets/github_sponsor_btn.svg)](https://github.com/sponsors/XadillaX)
+
 Syntax Highlighting is synchronized from [Atom VimL](https://github.com/Alhadis/language-viml) with ❤ by [vscode-grammar-update-tool](https://github.com/XadillaX/vscode-update-grammar-tool).
 
 Language Server Protocol depends on [vim-language-server](https://github.com/iamcco/vim-language-server).
