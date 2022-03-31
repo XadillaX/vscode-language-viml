@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/sponsors/XadillaX"><img src="https://github.com/XadillaX/vscode-language-viml/raw/master/assets/github_sponsor_btn.svg" /></a>
+</p>
+
+<p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=XadillaX.viml">
     <img src="https://vsmarketplacebadges.dev/version-short/XadillaX.viml.svg.?style=for-the-badge&colorA=FF7800&colorB=CC5600&label=VS%20MARKETPLACE" />
   </a>
@@ -20,8 +24,6 @@
 ## What does this extension do?
 
 [**VimL**](https://en.wikipedia.org/wiki/Vim_(text_editor)#Vim_script) (Also known as **Vim Language**, **VimScript**) support for [VSCode](https://code.visualstudio.com/).
-
-[![](assets/github_sponsor_btn.svg)](https://github.com/sponsors/XadillaX)
 
 Syntax Highlighting is synchronized from [Atom VimL](https://github.com/Alhadis/language-viml) with ❤ by [vscode-grammar-update-tool](https://github.com/XadillaX/vscode-update-grammar-tool).
 
