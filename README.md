@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/sponsors/XadillaX"><img src="https://github.com/XadillaX/vscode-language-viml/raw/master/assets/github_sponsor_btn.svg" /></a>
+  <a href="https://github.com/sponsors/XadillaX"><img src="https://github.com/XadillaX/vscode-language-viml/raw/master/assets/github_sponsor_btn.png" /></a>
 </p>
 
 <p align="center">
