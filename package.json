@@ -135,7 +135,6 @@
     "onLanguage:vim-help",
     "onLanguage:vim-snippet",
     "onLanguage:vim-markdown"
-
   ],
   "main": "./out/extension.js",
   "dependencies": {
