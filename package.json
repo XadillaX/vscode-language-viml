@@ -138,7 +138,7 @@
     "workspaceContains:**/*.exrc",
     "workspaceContains:**/_vimrc",
     "workspaceContains:**/vimrc",
-    "onLanguage:plaintext"
+    "workspaceContains:**/.*txt"
   ],
   "main": "./out/extension.js",
   "dependencies": {
