@@ -131,14 +131,11 @@
     ]
   },
   "activationEvents": [
-    "workspaceContains:**/*.vim",
-    "workspaceContains:**/*.vimrc",
-    "workspaceContains:**/*.gvim",
-    "workspaceContains:**/*.ideavim",
-    "workspaceContains:**/*.exrc",
-    "workspaceContains:**/_vimrc",
-    "workspaceContains:**/vimrc",
-    "onLanguage:plaintext"
+    "onLanguage:viml",
+    "onLanguage:vim-help",
+    "onLanguage:vim-snippet",
+    "onLanguage:vim-markdown",
+    "workspaceContains:**/.*txt"
   ],
   "main": "./out/extension.js",
   "dependencies": {
