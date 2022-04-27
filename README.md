@@ -17,7 +17,7 @@
     <img src="https://vsmarketplacebadges.dev/rating-star/XadillaX.viml.svg.?style=for-the-badge&colorA=FBBD30&colorB=F2AA08" />
   </a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-"><img src="https://img.shields.io/badge/3-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" /></a>
+<a href="#contributors-"><img src="https://img.shields.io/badge/4-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
@@ -63,6 +63,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://xcoder.in/"><img src="https://avatars.githubusercontent.com/u/2842176?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Khaidi Chu</b></sub></a><br /><a href="#maintenance-XadillaX" title="Maintenance">🚧</a> <a href="https://github.com/XadillaX/vscode-language-viml/commits?author=XadillaX" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/GitMensch"><img src="https://avatars.githubusercontent.com/u/6699539?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon Sobisch</b></sub></a><br /><a href="#ideas-GitMensch" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/dawsers"><img src="https://avatars.githubusercontent.com/u/47487972?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dawsers</b></sub></a><br /><a href="https://github.com/XadillaX/vscode-language-viml/commits?author=dawsers" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/beastmatser"><img src="https://avatars.githubusercontent.com/u/79206232?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mrts</b></sub></a><br /><a href="https://github.com/XadillaX/vscode-language-viml/commits?author=beastmatser" title="Code">💻</a></td>
   </tr>
 </table>
 
