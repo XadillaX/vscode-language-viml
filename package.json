@@ -140,6 +140,6 @@
   "main": "./out/extension.js",
   "dependencies": {
     "vim-language-server": "^2.3.0",
-    "vscode-languageclient": "^8.0.1"
+    "vscode-languageclient": "^8.1.0"
   }
 }
