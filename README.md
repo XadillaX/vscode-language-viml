@@ -49,6 +49,7 @@ Language Server Protocol depends on [vim-language-server](https://github.com/iam
   - **VimL files** (`*.vim`, `*.vimrc`, `_vimrc`, `*.gvimrc`, `*.ideavim`, `.ideavim`, `.ideavimrc`, `*.exrc`, etc);
   - **Vim Help files** (`*.txt` with matching a certain RegExp in file);
   - **Vim Snippet files** (`*.snip`, `*.snippet`, `*.snippets`, etc);
+  - [**Vroom files**](https://github.com/google/vroom) (`*.vroom`);
 + Syntax highlighting for embedding **Vim related syntaxes** (see above) in **Markdown files**.
 
 ## Contributors ✨

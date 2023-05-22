@@ -5,7 +5,7 @@
   "description": "Vim Script language server protocol and highlighting support for VSCode.",
   "scripts": {
     "update-grammar": "make update-grammar",
-    "update-changelog": "auto-changelog -p",
+    "update-changelog": "npx auto-changelog -p",
     "postinstall": "rm -f package-lock.json",
     "compile": "tsc -p ./",
     "vscode:prepublish": "make pack"
@@ -33,9 +33,9 @@
   },
   "icon": "assets/logo.png",
   "devDependencies": {
-    "@types/node": "^18.16.3",
+    "@types/node": "^18.16.14",
     "@types/vscode": "^1.20.0",
-    "all-contributors-cli": "^6.25.0",
+    "all-contributors-cli": "^6.25.1",
     "auto-changelog": "^2.4.0",
     "eslint": "^8.0.0",
     "eslint-config-egg": "^11.0.0",
@@ -68,6 +68,11 @@
         "language": "vim-snippet",
         "scopeName": "source.vim-snippet",
         "path": "./syntaxes/snippet.tmLanguage.json"
+      },
+      {
+        "language": "vroom",
+        "scopeName": "source.vroom",
+        "path": "./syntaxes/vroom.tmLanguage.json"
       },
       {
         "language": "vim-markdown",
@@ -127,6 +132,16 @@
       },
       {
         "id": "vim-markdown"
+      },
+      {
+        "id": "vroom",
+        "aliases": [
+          "Vroom"
+        ],
+        "extensions": [
+          ".vroom"
+        ],
+        "configuration": "./syntaxes/vroom.language-configuration.json"
       }
     ]
   },
@@ -135,6 +150,7 @@
     "onLanguage:vim-help",
     "onLanguage:vim-snippet",
     "onLanguage:vim-markdown",
+    "onLanguage:vroom",
     "workspaceContains:**/.*txt"
   ],
   "main": "./out/extension.js",

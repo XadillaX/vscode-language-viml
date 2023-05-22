@@ -1,0 +1,189 @@
+{
+    "scopeName": "source.vroom",
+    "fileTypes": ["vroom"],
+    "patterns": [
+      {
+        "match": "^(  >)( .*)?$",
+        "name": "markup.bold.entity.input.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.input.vroom"
+          },
+          "2": {
+            "patterns": [{"include": "#vroomControls"}, {"include": "source.viml"}]
+          }
+        }
+      },
+      {
+        "match": "^(  %)( .*)?$",
+        "name": "entity.text.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.text.vroom"
+          },
+          "2": {
+            "patterns": [{"include": "#vroomControls"}, {"include": "source.viml"}]
+          }
+        }
+      },
+      {
+        "begin": "^  :",
+        "end": "$",
+        "name": "markup.italic.command.vroom",
+        "patterns": [{"include": "#vroomControls"}, {"include": "source.viml"}, {
+          "match": "^(  :)",
+          "name": "support.type.command.vroom"
+        }]
+      },
+      {
+        "match": "^(  &)( .*)?$",
+        "name": "entity.output.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.output.vroom"
+          },
+          "2": {
+            "name": "text.output.vroom",
+            "patterns": [{"include": "#vroomControls"}]
+          }
+        }
+      },
+      {
+        "match": "^(  \\~)( .*)?$",
+        "name": "entity.message.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.message.vroom"
+          },
+          "2": {
+            "name": "string.message.vroom",
+            "patterns": [{"include": "#vroomControls"}]
+          }
+        }
+      },
+      {
+        "match": "^(  \\$)( .*)?$",
+        "name": "entity.hijack.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.hijack.vroom"
+          },
+          "2": {
+            "name": "support.function.hijack.vroom",
+            "patterns": [{"include": "#vroomControls"}]
+          }
+        }
+      },
+      {
+        "match": "^(  !)( .*)?$",
+        "name": "markup.italic.shell.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.shell.vroom"
+          },
+          "2": {
+              "name": "text.shell.vroom",
+              "patterns": [{"include": "#vroomControls"}, {"include": "source.shell"}]
+          }
+        }
+      },
+      {
+        "match": "^(  @)(\\w+)(\\W\\(.+\\))?$",
+        "name": "markup.italic.directive.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.directive.vroom"
+          },
+          "2": {
+            "name": "keyword.control.directive.vroom"
+          },
+          "3": {
+            "patterns": [{"include": "#vroomControls"}]
+          }
+        }
+      },
+      {
+        "match": "^(  \\|)(.*)?$",
+        "name": "entity.continuation.vroom",
+        "captures": {
+          "1": {
+            "name": "support.type.continuation.vroom"
+          }
+        }
+      },
+      {
+        "match": "^  ([^>:&\\~\\$!@\\|].*)$",
+        "name": "markup.italic.output_buffer.vroom",
+        "captures": {
+          "1": {
+            "patterns": [{"include": "#vroomControls"}]
+          }
+        }
+      },
+      {
+        "match": "^[^ ].*$",
+        "name": "comment.line.vroom"
+      }
+    ],
+    "repository": {
+      "source.vim": {
+        "path": "./syntaxes/viml.tmLanguage.json"
+      },
+      "vroomControls": {
+        "match": "(\\()(.+)(\\))$",
+        "name": "variable.control.vroom",
+        "captures": {
+          "1": {
+            "name": "punctuation.definition.control.vroom"
+          },
+          "3": {
+            "name": "punctuation.definition.control.vroom"
+          },
+          "2": {
+            "patterns": [{
+              "match": "\\.(,\\+?(\\d+|\\$)?)?$",
+              "name": "constant.numeric.range.vroom"
+            }, {
+              "match": "\\d+$",
+              "name": "constant.numeric.range.vroom"
+            }, {
+              "match": "\\d*(,\\+?(\\d+|\\$))$",
+              "name": "constant.numeric.range.vroom"
+            }, {
+              "match": "(regex|glob|verbatim)$",
+              "name": "variable.control.mode.vroom"
+            }, {
+              "match": "(stderr|stdout|command|status)$",
+              "name": "variable.control.channel.vroom"
+            }, {
+              "match": "bind$",
+              "name": "variable.control.bind.vroom"
+            }, {
+              "match": "(STRICT|RELAXED|GUESS-ERRORS)$",
+              "name": "variable.control.strictness.vroom"
+            }, {
+              "match": "&.",
+              "name": "text.escaped.vroom"
+            }, {
+              "match": ",",
+              "name": "punctuation.separator.vroom"
+            }, {
+              "match": "=",
+              "name": "punctuation.separator.vroom"
+            }, {
+              "begin": "'",
+              "end": "'",
+              "name": "string.single.vroom"
+            }, {
+              "begin": "\"",
+              "end": "\"",
+              "name": "string.double.vroom"
+            }, {
+              "match": "[a-zA-Z0-9_]+",
+              "name": "variable.other.vroom"
+            }]
+          }
+        }
+      }
+    }
+  }
