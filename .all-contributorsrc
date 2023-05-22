@@ -41,6 +41,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "wenfangdu",
+      "name": "Wenfang Du",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28700378?v=4",
+      "profile": "https://stackoverflow.com/u/7881859",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -49,5 +58,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "badgeTemplate": "<a href=\"#contributors-\"><img src=\"https://img.shields.io/badge/<%= contributors.length %>-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS\" /></a>"
+  "badgeTemplate": "<a href=\"#contributors-\"><img src=\"https://img.shields.io/badge/<%= contributors.length %>-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS\" /></a>",
+  "commitConvention": "angular"
 }
