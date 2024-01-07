@@ -33,7 +33,7 @@
   },
   "icon": "assets/logo.png",
   "devDependencies": {
-    "@types/node": "^18.19.4",
+    "@types/node": "^20.10.6",
     "@types/vscode": "^1.20.0",
     "all-contributors-cli": "^6.26.1",
     "auto-changelog": "^2.4.0",
