@@ -75,7 +75,6 @@
         "path": "./syntaxes/vroom.tmLanguage.json"
       },
       {
-        "language": "vim-markdown",
         "scopeName": "markdown.vim.codeblock",
         "path": "./syntaxes/codeblock.json",
         "injectTo": [
@@ -131,9 +130,6 @@
         "configuration": "./syntaxes/snippet.language-configuration.json"
       },
       {
-        "id": "vim-markdown"
-      },
-      {
         "id": "vroom",
         "aliases": [
           "Vroom"
@@ -149,7 +145,6 @@
     "onLanguage:viml",
     "onLanguage:vim-help",
     "onLanguage:vim-snippet",
-    "onLanguage:vim-markdown",
     "onLanguage:vroom",
     "workspaceContains:**/.*txt"
   ],
