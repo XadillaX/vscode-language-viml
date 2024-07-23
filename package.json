@@ -39,7 +39,7 @@
     "auto-changelog": "^2.4.0",
     "eslint": "^8.0.0",
     "eslint-config-egg": "^11.0.0",
-    "typescript": "^5.3.3",
+    "typescript": "^5.5.4",
     "vscode-update-grammar-tool": "^1.0.0"
   },
   "contributes": {
