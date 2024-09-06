@@ -17,7 +17,7 @@
     <img src="https://vsmarketplacebadges.dev/rating-star/XadillaX.viml.svg.?style=for-the-badge&colorA=FBBD30&colorB=F2AA08" />
   </a>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-"><img src="https://img.shields.io/badge/5-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" /></a>
+<a href="#contributors-"><img src="https://img.shields.io/badge/6-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
@@ -67,6 +67,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dawsers"><img src="https://avatars.githubusercontent.com/u/47487972?v=4?s=100" width="100px;" alt="dawsers"/><br /><sub><b>dawsers</b></sub></a><br /><a href="https://github.com/XadillaX/vscode-language-viml/commits?author=dawsers" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/beastmatser"><img src="https://avatars.githubusercontent.com/u/79206232?v=4?s=100" width="100px;" alt="mrts"/><br /><sub><b>mrts</b></sub></a><br /><a href="https://github.com/XadillaX/vscode-language-viml/commits?author=beastmatser" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://stackoverflow.com/u/7881859"><img src="https://avatars.githubusercontent.com/u/28700378?v=4?s=100" width="100px;" alt="Wenfang Du"/><br /><sub><b>Wenfang Du</b></sub></a><br /><a href="https://github.com/XadillaX/vscode-language-viml/commits?author=wenfangdu" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://remcohaszing.nl"><img src="https://avatars.githubusercontent.com/u/779047?v=4?s=100" width="100px;" alt="Remco Haszing"/><br /><sub><b>Remco Haszing</b></sub></a><br /><a href="https://github.com/XadillaX/vscode-language-viml/commits?author=remcohaszing" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
