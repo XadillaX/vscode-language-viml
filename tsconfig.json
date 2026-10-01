@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "node16",
+    "moduleResolution": "node16",
     "target": "es2020",
     "lib": [
       "es2020"
@@ -9,7 +10,10 @@
     "rootDir": "src",
     "sourceMap": true,
     "strict": true,
-    "allowJs": false
+    "allowJs": false,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src"
