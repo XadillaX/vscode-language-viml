@@ -50,6 +50,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "remcohaszing",
+      "name": "Remco Haszing",
+      "avatar_url": "https://avatars.githubusercontent.com/u/779047?v=4",
+      "profile": "http://remcohaszing.nl",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -59,5 +68,6 @@
   "repoHost": "https://github.com",
   "skipCi": true,
   "badgeTemplate": "<a href=\"#contributors-\"><img src=\"https://img.shields.io/badge/<%= contributors.length %>-ALL%20CONTRIBUTORS?style=for-the-badge&colorA=FF69b4&colorB=cc47a4&label=ALL%20CONTRIBUTORS\" /></a>",
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
