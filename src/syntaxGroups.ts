@@ -26,15 +26,48 @@ export interface SyntaxGroupDefinition {
 
 export interface SyntaxGroupReference {
   name: string;
-  // Range covering just the referenced name (without any leading `@`).
+  // Range covering the referenced token (without any leading `@`). For a
+  // wildcard reference this covers the whole pattern, e.g. `foo.*`.
   nameSpan: Span;
   // The key the reference appeared under, e.g. "contains", "nextgroup".
   via: string;
+  // True when `name` is a Vim group-name pattern (contains `*`) rather than a
+  // literal group name, e.g. `foo.*` or `vimFunc.*`.
+  isWildcard: boolean;
 }
 
 export interface SyntaxGroups {
   definitions: SyntaxGroupDefinition[];
   references: SyntaxGroupReference[];
+}
+
+// Turn a Vim group-name pattern (as used in `contains=foo.*`) into a RegExp
+// anchored to the whole name. Vim uses a small pattern syntax here; we support
+// the common pieces: `.` (any char), `*` (zero-or-more of previous), and treat
+// everything else literally. Returns null if the token has no wildcard.
+export function wildcardToRegExp(pattern: string): RegExp | null {
+  if (!pattern.includes('*')) {
+    return null;
+  }
+  let out = '';
+  for (let i = 0; i < pattern.length; i++) {
+    const ch = pattern[i];
+    if (ch === '.') {
+      out += '.';
+    } else if (ch === '*') {
+      out += '*';
+    } else if (/[A-Za-z0-9_]/.test(ch)) {
+      out += ch;
+    } else {
+      // Escape anything else so it is matched literally.
+      out += '\\' + ch;
+    }
+  }
+  try {
+    return new RegExp('^' + out + '$');
+  } catch {
+    return null;
+  }
 }
 
 // Reserved words that may appear where a group name is expected but which are
@@ -162,20 +195,25 @@ export function parseSyntaxGroups(text: string): SyntaxGroups {
           at = 1;
           item = item.slice(1);
         }
-        // Strip a trailing wildcard-ish suffix we won't resolve (e.g. foo.*).
-        // Keep plain identifiers only.
-        const idMatch = /^[A-Za-z][A-Za-z0-9_]*/.exec(item);
-        if (!idMatch) {
+        // A group-name token here is an identifier optionally followed by Vim
+        // pattern wildcards (`.`, `*`), e.g. `foo`, `foo.*`, `vimFunc\w*`.
+        // Capture the whole token so wildcard references can be expanded later.
+        const tokMatch = /^[A-Za-z][A-Za-z0-9_]*(?:[.*\\][A-Za-z0-9_.*\\]*)?/.exec(item);
+        if (!tokMatch) {
           continue;
         }
-        const name = idMatch[0];
-        if (RESERVED.has(name)) {
+        const token = tokMatch[0];
+        const isWildcard = token.includes('*');
+        // Reserved words (ALL/ALLBUT/...) are not groups. They never contain a
+        // wildcard, so only check the plain-identifier case.
+        if (!isWildcard && RESERVED.has(token)) {
           continue;
         }
         references.push({
-          name,
+          name: token,
           via,
-          nameSpan: spanFor(ll, itemOffset + at, name.length),
+          isWildcard,
+          nameSpan: spanFor(ll, itemOffset + at, token.length),
         });
       }
     }
