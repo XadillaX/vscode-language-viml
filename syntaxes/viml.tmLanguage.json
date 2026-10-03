@@ -99,6 +99,12 @@
     "main": {
       "patterns": [
         {
+          "include": "#mapCommandExpr"
+        },
+        {
+          "include": "#mapCommand"
+        },
+        {
           "include": "#vimTodo"
         },
         {
@@ -1468,6 +1474,129 @@
     "vimUserCommand": {
       "name": "support.function.vimUserCommand.viml",
       "match": "(?x) \\b\n( com\n| command\n) \\b"
+    },
+    "mapCommandExpr": {
+      "name": "meta.map.expr.viml",
+      "begin": "(?x) \\b ([nvxsoilct]?(?:nore)?map|snoremap|smap) \\b (!)? ((?:\\s*<(?i:buffer|silent|nowait|unique|script)>)*\\s*<(?i:expr)>(?:\\s*<(?i:buffer|silent|nowait|unique|script)>)*) \\s+ (\\S+) ",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.map.viml"
+        },
+        "2": {
+          "name": "keyword.operator.bang.viml"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#mapModifier"
+            }
+          ]
+        },
+        "4": {
+          "name": "meta.map.lhs.viml",
+          "patterns": [
+            {
+              "include": "#mapNotation"
+            },
+            {
+              "match": "\\S",
+              "name": "entity.name.function.map-lhs.viml"
+            }
+          ]
+        }
+      },
+      "end": "$",
+      "contentName": "meta.map.rhs.expr.viml",
+      "patterns": [
+        {
+          "include": "#mapNotation"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#variable"
+        },
+        {
+          "include": "#register"
+        },
+        {
+          "include": "#keyword"
+        },
+        {
+          "include": "#expr"
+        }
+      ]
+    },
+    "mapCommand": {
+      "name": "meta.map.viml",
+      "begin": "(?x) \\b ([nvxsoilct]?(?:nore)?map|snoremap|smap) \\b (!)? ((?:\\s*<(?i:buffer|silent|expr|nowait|unique|script)>)*) \\s+ (\\S+) ",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.map.viml"
+        },
+        "2": {
+          "name": "keyword.operator.bang.viml"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#mapModifier"
+            }
+          ]
+        },
+        "4": {
+          "name": "meta.map.lhs.viml",
+          "patterns": [
+            {
+              "include": "#mapNotation"
+            },
+            {
+              "match": "\\S",
+              "name": "entity.name.function.map-lhs.viml"
+            }
+          ]
+        }
+      },
+      "end": "$",
+      "contentName": "meta.map.rhs.viml",
+      "patterns": [
+        {
+          "include": "#mapNotation"
+        },
+        {
+          "match": "\\S+",
+          "name": "string.unquoted.map-rhs.viml"
+        }
+      ]
+    },
+    "mapModifier": {
+      "name": "storage.modifier.map.viml",
+      "match": "(?i)<(buffer|silent|expr|nowait|unique|script)>",
+      "captures": {
+        "1": {
+          "name": "support.function.vimMapModKey.viml"
+        }
+      }
+    },
+    "mapNotation": {
+      "patterns": [
+        {
+          "name": "constant.character.notation.viml",
+          "match": "(?i)(<)((?:[csma]-)*(?:plug|sid|nop|silent|cmd|cr|esc|tab|bs|space|bar|lt|del|up|down|left|right|home|end|pageup|pagedown|f[0-9]{1,2}|(?:local)?leader|k?[0-9]|[a-z]+))(>)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.bracket.angle.begin.viml"
+            },
+            "3": {
+              "name": "punctuation.definition.bracket.angle.end.viml"
+            }
+          }
+        }
+      ]
     }
   }
 }

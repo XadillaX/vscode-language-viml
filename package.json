@@ -10,6 +10,7 @@
     "compile": "tsc -p ./",
     "pretest": "npm run compile",
     "test": "vscode-test",
+    "test:grammar": "node scripts/test-grammar.js",
     "package-check": "vsce ls --tree",
     "vscode:prepublish": "make pack"
   },
@@ -47,6 +48,8 @@
     "eslint": "^10.11.0",
     "eslint-config-egg": "^14.1.0",
     "typescript": "^7.0.2",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2",
     "vscode-update-grammar-tool": "^1.0.0"
   },
   "contributes": {

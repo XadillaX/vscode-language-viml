@@ -6,6 +6,23 @@ on:
   pull_request:
 
 jobs:
+  grammar:
+    name: Grammar test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      # Pure-Node TextMate tokenization checks (issue #74). No VS Code host
+      # needed, so this is a fast first gate.
+      - name: Run grammar tests
+        run: npm run test:grammar
+
   test:
     name: Test (${{ matrix.os }}, VS Code ${{ matrix.vscode }})
     runs-on: ${{ matrix.os }}
