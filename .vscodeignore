@@ -8,3 +8,4 @@ vroom-examples
 .vscode-test.mjs
 .github/**
 out/test/**
+scripts/**
