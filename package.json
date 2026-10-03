@@ -11,6 +11,7 @@
     "pretest": "npm run compile",
     "test": "vscode-test",
     "test:grammar": "node scripts/test-grammar.js",
+    "test:syntax": "node scripts/test-syntax-groups.js",
     "package-check": "vsce ls --tree",
     "vscode:prepublish": "make pack"
   },
