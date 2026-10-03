@@ -12,7 +12,8 @@
     "strict": true,
     "allowJs": false,
     "types": [
-      "node"
+      "node",
+      "mocha"
     ]
   },
   "include": [

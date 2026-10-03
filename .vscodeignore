@@ -4,3 +4,7 @@
 *.vsix
 src
 vroom-examples
+.vscode-test/**
+.vscode-test.mjs
+.github/**
+out/test/**

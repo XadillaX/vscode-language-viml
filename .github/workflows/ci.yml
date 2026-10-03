@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }}, VS Code ${{ matrix.vscode }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        # `stable` plus the minimum version declared in `engines.vscode`,
+        # so we prove the extension works on both ends of the supported range.
+        vscode: [stable, '1.91.0']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - name: Compile
+        run: npm run compile
+
+      # VS Code is an Electron app and needs a display. Linux runners are
+      # headless, so wrap the run in a virtual framebuffer (xvfb).
+      - name: Run integration tests (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a npm test
+        env:
+          VSCODE_VERSION: ${{ matrix.vscode }}
+
+      - name: Run integration tests (macOS / Windows)
+        if: runner.os != 'Linux'
+        run: npm test
+        env:
+          VSCODE_VERSION: ${{ matrix.vscode }}
+
+  package:
+    name: Package check (vsce)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - name: Compile
+        run: npm run compile
+
+      # `vsce ls` validates the manifest (engines, required fields) and lists
+      # exactly what would ship in the .vsix, catching packaging regressions
+      # without pulling in vsce's optional secret-scanning dependencies.
+      - name: Validate package contents
+        run: npm run package-check
