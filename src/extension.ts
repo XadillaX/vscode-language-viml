@@ -18,7 +18,9 @@ import {
   SyntaxGroupDefinitionProvider,
   SyntaxGroupReferenceProvider,
   SyntaxGroupSymbolProvider,
+  SyntaxGroupWorkspaceSymbolProvider,
 } from './syntaxGroupProviders';
+import { SyntaxGroupIndex } from './syntaxIndex';
 
 const VIML_SELECTOR = { scheme: 'file', language: 'viml' };
 
@@ -170,14 +172,20 @@ export function activate(context: ExtensionContext) {
 
   // Syntax-group symbols/jumps (issue #69). These register alongside the
   // language client, so VS Code merges their results with the server's
-  // function/variable symbols.
+  // function/variable symbols. A workspace-wide index backs cross-file
+  // definition/reference resolution (including `contains=foo.*` wildcards).
+  const syntaxIndex = new SyntaxGroupIndex();
+  void syntaxIndex.initialize();
   context.subscriptions.push(
+    syntaxIndex,
     languages.registerDocumentSymbolProvider(
       VIML_SELECTOR, new SyntaxGroupSymbolProvider()),
+    languages.registerWorkspaceSymbolProvider(
+      new SyntaxGroupWorkspaceSymbolProvider(syntaxIndex)),
     languages.registerDefinitionProvider(
-      VIML_SELECTOR, new SyntaxGroupDefinitionProvider()),
+      VIML_SELECTOR, new SyntaxGroupDefinitionProvider(syntaxIndex)),
     languages.registerReferenceProvider(
-      VIML_SELECTOR, new SyntaxGroupReferenceProvider()));
+      VIML_SELECTOR, new SyntaxGroupReferenceProvider(syntaxIndex)));
 }
 
 export function deactivate(): Thenable<void> | undefined {

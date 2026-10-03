@@ -8,7 +8,7 @@ const assert = require('assert');
 const path = require('path');
 
 // Compiled by `tsc` into out/ before this runs (see the pretest hooks).
-const { parseSyntaxGroups, buildLogicalLines } = require(
+const { parseSyntaxGroups, buildLogicalLines, wildcardToRegExp } = require(
   path.join(__dirname, '..', 'out', 'syntaxGroups.js')
 );
 
@@ -121,6 +121,48 @@ check('non-syntax lines produce nothing', () => {
     '" contains=notAThing in a comment is still scanned (acceptable v1 approximation)',
   ].join('\n'));
   assert.strictEqual(g.definitions.length, 0);
+});
+
+// --- wildcard references (v2) ---
+check('wildcard reference keeps the whole pattern and is flagged', () => {
+  const g = parseSyntaxGroups('syn match foo /x/ contains=vimFunc.*');
+  const ref = g.references.find(r => r.name === 'vimFunc.*');
+  assert.ok(ref, 'expected a vimFunc.* reference; got ' + refNames(g).join(','));
+  assert.strictEqual(ref.isWildcard, true);
+});
+
+check('plain reference is not flagged as wildcard', () => {
+  const g = parseSyntaxGroups('syn match foo /x/ contains=barGroup');
+  assert.strictEqual(g.references[0].isWildcard, false);
+});
+
+check('wildcard span covers the whole pattern token', () => {
+  const line = 'syn match foo /x/ contains=vimFunc.*';
+  const g = parseSyntaxGroups(line);
+  const ref = g.references.find(r => r.isWildcard);
+  assert.strictEqual(
+    line.slice(ref.nameSpan.startCharacter, ref.nameSpan.endCharacter),
+    'vimFunc.*'
+  );
+});
+
+check('wildcardToRegExp expands foo.* correctly', () => {
+  const re = wildcardToRegExp('foo.*');
+  assert.ok(re, 'expected a RegExp');
+  assert.ok(re.test('foo'), 'foo should match foo.*');
+  assert.ok(re.test('fooBar'), 'fooBar should match foo.*');
+  assert.ok(!re.test('barfoo'), 'barfoo should NOT match foo.*');
+});
+
+check('wildcardToRegExp returns null for a plain name', () => {
+  assert.strictEqual(wildcardToRegExp('plainName'), null);
+});
+
+check('@cluster wildcard reference strips @ and keeps pattern', () => {
+  const g = parseSyntaxGroups('syn match foo /x/ contains=@vimCluster.*');
+  const ref = g.references.find(r => r.isWildcard);
+  assert.ok(ref, 'expected a wildcard cluster ref');
+  assert.strictEqual(ref.name, 'vimCluster.*');
 });
 
 console.log(`\n${passed} syntax-group assertions passed.`);

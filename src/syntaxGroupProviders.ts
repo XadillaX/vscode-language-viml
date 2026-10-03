@@ -1,7 +1,8 @@
 // VS Code providers that surface Vim :syntax groups (issue #69). They wrap the
-// pure parser in syntaxGroups.ts and register alongside the vim-language-server
-// client, so syntax-group symbols/jumps are merged with the server's function
-// and variable symbols rather than replacing them.
+// pure parser in syntaxGroups.ts and a workspace-wide index (syntaxIndex.ts),
+// and register alongside the vim-language-server client, so syntax-group
+// symbols/jumps are merged with the server's function/variable symbols rather
+// than replacing them.
 
 import {
   CancellationToken,
@@ -11,19 +12,26 @@ import {
   DocumentSymbolProvider,
   Location,
   Position,
+  ProviderResult,
   Range,
   ReferenceContext,
   ReferenceProvider,
+  SymbolInformation,
   SymbolKind,
   TextDocument,
   Uri,
+  workspace,
+  WorkspaceSymbolProvider,
 } from 'vscode';
 import {
   parseSyntaxGroups,
   Span,
   SyntaxGroupKind,
+  SyntaxGroupReference,
   SyntaxGroups,
+  wildcardToRegExp,
 } from './syntaxGroups';
+import { SyntaxGroupIndex } from './syntaxIndex';
 
 function spanToRange(span: Span): Range {
   return new Range(
@@ -52,11 +60,14 @@ function getGroups(document: TextDocument): SyntaxGroups {
   return groups;
 }
 
-// Find the reference name token under `position`, if any.
-function referenceAt(groups: SyntaxGroups, position: Position): string | undefined {
+// Find the reference token under `position`, if any.
+function referenceAt(
+  groups: SyntaxGroups,
+  position: Position
+): SyntaxGroupReference | undefined {
   for (const ref of groups.references) {
     if (spanToRange(ref.nameSpan).contains(position)) {
-      return ref.name;
+      return ref;
     }
   }
   return undefined;
@@ -82,34 +93,43 @@ export class SyntaxGroupSymbolProvider implements DocumentSymbolProvider {
 }
 
 export class SyntaxGroupDefinitionProvider implements DefinitionProvider {
+  constructor(private readonly index: SyntaxGroupIndex) {}
+
   public provideDefinition(
     document: TextDocument,
     position: Position,
     _token: CancellationToken
   ): Definition | undefined {
     const groups = getGroups(document);
-    const name = referenceAt(groups, position);
-    if (!name) {
+    const ref = referenceAt(groups, position);
+    if (!ref) {
       return undefined;
     }
-    const locations: Location[] = groups.definitions
-      .filter(def => def.name === name)
-      .map(def => new Location(document.uri, spanToRange(def.nameSpan)));
+    // Make sure the current document's own definitions are up to date (handles
+    // unsaved edits) before resolving against the workspace index.
+    this.index.updateFromDocument(document);
+    const locations = this.index.resolve(ref.name, ref.isWildcard);
     return locations.length > 0 ? locations : undefined;
   }
 }
 
 export class SyntaxGroupReferenceProvider implements ReferenceProvider {
-  public provideReferences(
+  constructor(private readonly index: SyntaxGroupIndex) {}
+
+  public async provideReferences(
     document: TextDocument,
     position: Position,
     context: ReferenceContext,
     _token: CancellationToken
-  ): Location[] {
+  ): Promise<Location[]> {
     const groups = getGroups(document);
-    // Resolve the group name under the cursor: either a definition name or a
-    // reference token.
-    let name: string | undefined = referenceAt(groups, position);
+    // Resolve the group name under the cursor: a reference token (ignore
+    // wildcard tokens here) or a definition name.
+    let name: string | undefined;
+    const ref = referenceAt(groups, position);
+    if (ref && !ref.isWildcard) {
+      name = ref.name;
+    }
     if (!name) {
       const def = groups.definitions.find(d =>
         spanToRange(d.nameSpan).contains(position)
@@ -119,29 +139,74 @@ export class SyntaxGroupReferenceProvider implements ReferenceProvider {
     if (!name) {
       return [];
     }
-    const locations: Location[] = [];
-    for (const ref of groups.references) {
-      if (ref.name === name) {
-        locations.push(new Location(document.uri, spanToRange(ref.nameSpan)));
+
+    // Scan every .vim file in the workspace for references to `name`
+    // (including wildcard references that match it).
+    const files = await workspace.findFiles('**/*.vim', '**/node_modules/**');
+    const out: Location[] = [];
+    for (const uri of files) {
+      const text = await readText(uri);
+      if (text === undefined) {
+        continue;
       }
-    }
-    if (context.includeDeclaration) {
-      for (const def of groups.definitions) {
-        if (def.name === name) {
-          locations.push(new Location(document.uri, spanToRange(def.nameSpan)));
+      const g = parseSyntaxGroups(text);
+      for (const r of g.references) {
+        if (referenceMatches(r, name)) {
+          out.push(new Location(uri, spanToRange(r.nameSpan)));
+        }
+      }
+      if (context.includeDeclaration) {
+        for (const d of g.definitions) {
+          if (d.name === name) {
+            out.push(new Location(uri, spanToRange(d.nameSpan)));
+          }
         }
       }
     }
-    return locations;
+    return out;
   }
 }
 
-// Exposed for testing: drop a document's cached parse (not needed in normal
-// use since version checks handle invalidation).
-export function _clearCache(uri?: Uri): void {
-  if (uri) {
-    cache.delete(uri.toString());
-  } else {
-    cache.clear();
+export class SyntaxGroupWorkspaceSymbolProvider
+implements WorkspaceSymbolProvider {
+  constructor(private readonly index: SyntaxGroupIndex) {}
+
+  public provideWorkspaceSymbols(
+    query: string,
+    _token: CancellationToken
+  ): ProviderResult<SymbolInformation[]> {
+    const q = query.toLowerCase();
+    return this.index.allDefinitions()
+      .filter(({ def }) => q === '' || def.name.toLowerCase().includes(q))
+      .map(({ uri, def }) => new SymbolInformation(
+        def.name,
+        kindToSymbolKind(def.kind),
+        `syntax ${def.kind}`,
+        new Location(uri, spanToRange(def.nameSpan))
+      ));
+  }
+}
+
+function referenceMatches(ref: SyntaxGroupReference, name: string): boolean {
+  if (!ref.isWildcard) {
+    return ref.name === name;
+  }
+  // A wildcard reference matches `name` if its pattern does.
+  const re = wildcardToRegExp(ref.name);
+  return re ? re.test(name) : false;
+}
+
+async function readText(uri: Uri): Promise<string | undefined> {
+  const open = workspace.textDocuments.find(
+    d => d.uri.toString() === uri.toString()
+  );
+  if (open) {
+    return open.getText();
+  }
+  try {
+    const bytes = await workspace.fs.readFile(uri);
+    return Buffer.from(bytes).toString('utf8');
+  } catch {
+    return undefined;
   }
 }
