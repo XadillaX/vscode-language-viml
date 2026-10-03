@@ -1,4 +1,5 @@
 import {
+  ExtensionContext,
   languages,
   OutputChannel,
   TextEditor,
@@ -13,6 +14,13 @@ import {
   ServerOptions,
   TransportKind,
 } from 'vscode-languageclient/node';
+import {
+  SyntaxGroupDefinitionProvider,
+  SyntaxGroupReferenceProvider,
+  SyntaxGroupSymbolProvider,
+} from './syntaxGroupProviders';
+
+const VIML_SELECTOR = { scheme: 'file', language: 'viml' };
 
 const VIM_MODELINE = /(?:(?:^|[ \t])(?:vi|Vi(?=m))(?:m[<=>]?[0-9]+|m)?|[ \t]ex)(?=:(?=[ \t]*set?[ \t][^\r\n:]+:)|:(?![ \t]*set?[ \t]))(?:(?:[ \t]*:[ \t]*|[ \t])\w*(?:[ \t]*=(?:[^\\\s]|\\.)*)?)*[ \t:](?:filetype|ft|syntax)[ \t]*=(\w+)(?=$|\s|:)/mi;
 
@@ -155,10 +163,21 @@ function startVimHelpLogic() {
   });
 }
 
-export function activate() {
+export function activate(context: ExtensionContext) {
   outputChannel = window.createOutputChannel('VimL');
   startVimLLanguageServerWhenVimLFile();
   startVimHelpLogic();
+
+  // Syntax-group symbols/jumps (issue #69). These register alongside the
+  // language client, so VS Code merges their results with the server's
+  // function/variable symbols.
+  context.subscriptions.push(
+    languages.registerDocumentSymbolProvider(
+      VIML_SELECTOR, new SyntaxGroupSymbolProvider()),
+    languages.registerDefinitionProvider(
+      VIML_SELECTOR, new SyntaxGroupDefinitionProvider()),
+    languages.registerReferenceProvider(
+      VIML_SELECTOR, new SyntaxGroupReferenceProvider()));
 }
 
 export function deactivate(): Thenable<void> | undefined {

@@ -6,8 +6,8 @@ on:
   pull_request:
 
 jobs:
-  grammar:
-    name: Grammar test
+  unit:
+    name: Unit tests (grammar + syntax)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -18,10 +18,16 @@ jobs:
 
       - run: npm install
 
-      # Pure-Node TextMate tokenization checks (issue #74). No VS Code host
-      # needed, so this is a fast first gate.
+      - name: Compile
+        run: npm run compile
+
+      # Pure-Node checks (no VS Code host): TextMate tokenization (issue #74)
+      # and the syntax-group parser (issue #69). Fast first gate.
       - name: Run grammar tests
         run: npm run test:grammar
+
+      - name: Run syntax-group tests
+        run: npm run test:syntax
 
   test:
     name: Test (${{ matrix.os }}, VS Code ${{ matrix.vscode }})
