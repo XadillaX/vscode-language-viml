@@ -13,5 +13,3 @@ update-grammar:
 pack:
 	npm install
 	npm run compile
-	rm -rf node_modules
-	npm install --prod
