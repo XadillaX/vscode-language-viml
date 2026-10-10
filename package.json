@@ -39,7 +39,7 @@
   "icon": "assets/logo.png",
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "@types/vscode": "^1.91.0",
     "@vscode/test-cli": "^0.0.15",
     "@vscode/test-electron": "^3.1.0",
